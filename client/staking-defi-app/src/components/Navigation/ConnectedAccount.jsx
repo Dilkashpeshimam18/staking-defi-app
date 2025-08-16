@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import Web3Context from '../../context/Web3Context'
 
 const ConnectedAccount = () => {
+    const {account}=useContext(Web3Context);
+    console.log('account',account)
   return (
-    <div>ConnectedAccount</div>
+    <div>Connected Account:{account}</div>
   )
 }
 

@@ -4,10 +4,10 @@ import ConnectedNetwork from './ConnectedNetwork';
 
 const Navigation = () => {
   return (
-    <nav>
+    <div>
       <ConnectedAccount />
       <ConnectedNetwork />
-    </nav>
+    </div>
   );
 };
 

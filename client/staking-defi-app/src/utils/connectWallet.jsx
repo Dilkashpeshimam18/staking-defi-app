@@ -1,35 +1,42 @@
 import { ethers, Contract } from 'ethers';
 import stakeTokenAbi from '../abi/stakeTokenAbi.json';
 import stakingAbi from '../abi/stakingAbi.json';
-
+import rewardAbi from '../abi/rewardTokenAbi.json'
 export const connectWallet = async () => {
   try {
-    let [provider, stakingContract, stakeTokenContract, chainId, signer] = [null];
-    if (!window.ethereum) {
-      throw new Error('Metamask not installed');
-    }
+    if (!window.ethereum) throw new Error('Metamask not installed');
 
-    const accounts =await window.ethereum.request({
+    // Request accounts
+    const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
-    console.log(accounts)
-    const chainIdHex =await window.ethereum.request({
-      method: 'eth_chainId',
-    });
-    chainId = parseInt(chainIdHex, 10);
     const selectedAccount = accounts[0];
-    if (!selectedAccount) {
-      throw new Error('No ethereum account available!');
-    }
-    provider = new ethers.BrowserProvider(window.ethereum);
-    signer = await provider.getSigner();
+    if (!selectedAccount) throw new Error('No ethereum account available!');
 
-    const stakeTokenContractAddress = '0x9D7f74d0C41E726EC95884E0e97Fa6129e3b5E99';
-    const stakeContractAddress = '0xddaAd340b0f1Ef65169Ae5E41A8b10776a75482d';
+    // Get chainId properly
+    const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
+    const chainId = parseInt(chainIdHex, 16);
 
-    stakingContract = new Contract(stakeContractAddress, stakingAbi, signer);
-    stakeTokenContract = new Contract(stakeTokenContractAddress, stakeTokenAbi, signer);
-    return { provider, selectedAccount,stakingContract, stakeTokenContract,  signer, chainId };
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+
+    const stakeTokenContractAddress = '0x8a5b010C35F331AE3fa53A8D945f4788Ea921c3b';
+    const stakeContractAddress = '0xAa7833d7902C57C1252A8A2AeE6ee90B514Db605';
+    const rewardTokenContractAddress = '0x4e9A02eb2007C1F99978CF7CF4F000b7f3562F02';
+
+    const stakingContract = new Contract(stakeContractAddress, stakingAbi, signer);
+    const stakeTokenContract = new Contract(stakeTokenContractAddress, stakeTokenAbi, signer);
+    const rewardTokenContract = new Contract(rewardTokenContractAddress, rewardAbi, signer);
+
+    return {
+      provider,
+      selectedAccount,
+      stakingContract,
+      stakeTokenContract,
+      rewardTokenContract,
+      signer,
+      chainId,
+    };
   } catch (err) {
     console.error(err);
     throw err;

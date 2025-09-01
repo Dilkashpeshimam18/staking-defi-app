@@ -1,0 +1,185 @@
+/* .how-it-works {
+  background: #0a0a0a;
+  padding: 80px 60px;
+  color: white;
+}
+
+.how-header {
+  text-align: left;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+.how-header h2 {
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.highlight {
+  color: #00ff9d;
+}
+
+.how-header p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.step-card {
+  flex: 1;
+  background: #111;
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  border-radius: 10px;
+  padding: 30px 25px;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  border-color: #00ff9d;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+}
+
+.step-number {
+  font-size: 55px;
+  font-weight: bold;
+  color: transparent;
+  -webkit-text-stroke: 1px #00ff9d;
+  margin-bottom: 15px;
+}
+
+.step-card h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.5;
+} */
+
+
+.how-it-works {
+  background: #0a0a0a;
+  padding: 80px 60px;
+  color: white;
+}
+
+.how-header {
+  text-align: left;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+.how-header h2 {
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.highlight {
+  color: #00ff9d;
+}
+
+.how-header p {
+  font-size: clamp(13px, 2vw, 15px);
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* ✅ allows wrapping on smaller screens */
+}
+
+.step-card {
+  flex: 1;
+  min-width: 260px; /* ✅ keeps card readable on smaller screens */
+  background: #111;
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  border-radius: 10px;
+  padding: 30px 25px;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  border-color: #00ff9d;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+}
+
+.step-number {
+  font-size: clamp(32px, 6vw, 55px);
+  font-weight: bold;
+  color: transparent;
+  -webkit-text-stroke: 1px #00ff9d;
+  margin-bottom: 15px;
+}
+
+.step-card h3 {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: clamp(13px, 2vw, 14px);
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/* ✅ Tablet screens */
+@media (max-width: 992px) {
+  .how-it-works {
+    padding: 60px 30px;
+  }
+
+  .how-header {
+    text-align: center;
+    margin: 0 auto 30px auto;
+  }
+
+  .steps-container {
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .step-card {
+    flex: 1 1 calc(50% - 20px); /* 2 per row */
+    max-width: 350px;
+  }
+}
+
+/* ✅ Mobile screens */
+@media (max-width: 600px) {
+  .how-it-works {
+    padding: 40px 20px;
+  }
+
+  .steps-container {
+    flex-direction: column; /* stack cards */
+    align-items: center;
+  }
+
+  .step-card {
+    /* width: 100%; */
+    max-width: 260px;
+  }
+
+  .step-card h3 {
+    font-size: 16px;
+  }
+
+  .step-card p {
+    font-size: 13px;
+  }
+}

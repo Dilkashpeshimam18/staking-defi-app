@@ -1,14 +1,17 @@
 import { useContext, useState } from "react";
 import Web3Context  from "../../context/Web3Context";
 import './Navbar.css'
+import { useNavigate } from 'react-router-dom';
+
 function Navbar() {
   const { handleWallet, account } = useContext(Web3Context);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate=useNavigate()
 
   return (
     <nav className="navbar">
       {/* Logo */}
-      <div className="logo">🔋 DSTAKE</div>
+      <div onClick={()=>navigate('/')} className="logo">🔋 DSTAKE</div>
 
       {/* Hamburger */}
       <div

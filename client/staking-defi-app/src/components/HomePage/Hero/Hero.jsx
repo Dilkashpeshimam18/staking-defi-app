@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import HeroImg from '../../../assets/nft-icon.png';
+
 function Hero() {
   return (
     <section className="hero">
